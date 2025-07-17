@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://morphinelabs.com/sitemap.xml
+
+# Disallow specific paths (if any)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Allow all content for search engines
+# This helps with SEO and indexing
+Allow: /api/
+Allow: /images/
+Allow: /assets/
+Allow: /_next/static/
+
+# Crawl delay (optional, helps prevent overwhelming the server)
+Crawl-delay: 1
