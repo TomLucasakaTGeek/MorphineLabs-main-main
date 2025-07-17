@@ -274,7 +274,9 @@ export default function Home() {
                 transition={{ delay: 0.4 }}
                 className="pt-2"
               >
-                <Button className="w-full bg-lime-400 hover:bg-lime-500 text-black font-semibold">
+                <Button href='https://calendly.com/raj-morphinelabs/morphinelabs'
+                external variant='default' size='lg'
+                className="w-full bg-lime-400 hover:bg-lime-500 text-black font-semibold">
                   Book Consultation
                 </Button>
               </motion.div>
@@ -417,7 +419,7 @@ export default function Home() {
                 whileTap={{ scale: 0.95 }}
                 className="w-full sm:w-auto"
               >
-                <Button href='#contact'
+                <Button href='#contact' external
                 variant='default' size="lg" className="w-full sm:w-auto bg-lime-400 hover:bg-lime-500 text-black font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg">
                   Start Your Growth Journey
                   <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
