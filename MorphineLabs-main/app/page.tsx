@@ -24,12 +24,12 @@ export default function Home() {
 
   useEffect(() => {
     setIsVisible(true);
-    
+
     // Animate metrics
     const animateMetrics = () => {
       const targets = { communities: 20, events: 100, users: 50000, projects: 50 };
       let current = { communities: 0, events: 0, users: 0, projects: 0 };
-      
+
       const increment = () => {
         Object.keys(targets).forEach(key => {
           const typedKey = key as keyof typeof targets;
@@ -38,16 +38,16 @@ export default function Home() {
             if (current[typedKey] > targets[typedKey]) current[typedKey] = targets[typedKey];
           }
         });
-        setMetrics({...current});
-        
+        setMetrics({ ...current });
+
         if (Object.values(current).some((val, i) => val < Object.values(targets)[i])) {
           setTimeout(increment, 50);
         }
       };
-      
+
       setTimeout(increment, 500);
     };
-    
+
     animateMetrics();
   }, []);
 
@@ -161,7 +161,7 @@ export default function Home() {
       </div>
 
       {/* Navigation */}
-      <motion.nav 
+      <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -169,15 +169,15 @@ export default function Home() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <motion.div 
+            <motion.div
               className="flex items-center space-x-2"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
               <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center overflow-hidden">
-                <Image 
-                  src="/logo.png" 
-                  alt="Morphine Labs" 
+                <Image
+                  src="/logo.png"
+                  alt="Morphine Labs"
                   width={32}
                   height={32}
                   className="w-full h-full object-contain"
@@ -185,7 +185,7 @@ export default function Home() {
               </div>
               <span className="text-lg sm:text-xl font-bold">Morphine Labs</span>
             </motion.div>
-            
+
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
               {['About', 'Services', 'Partner with us', 'Contact'].map((item, index) => (
@@ -203,20 +203,23 @@ export default function Home() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button className="bg-lime-400 hover:bg-lime-500 text-black font-semibold">
+                <Button href='https://calendly.com/raj-morphinelabs/morphinelabs'
+                  external variant="default"
+                  size='lg'
+                  className="bg-lime-400 hover:bg-lime-500 text-black font-semibold">
                   Book Consultation
                 </Button>
               </motion.div>
             </div>
-            
+
             {/* Mobile menu button */}
             <div className="md:hidden flex items-center space-x-2">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button 
-                  size="sm" 
+                <Button
+                  size="sm"
                   className="bg-lime-400 hover:bg-lime-500 text-black font-semibold text-xs px-3 py-2"
                   onClick={() => {
                     const contactSection = document.getElementById('contact');
@@ -239,13 +242,13 @@ export default function Home() {
             </div>
           </div>
         </div>
-        
+
         {/* Mobile Menu */}
         <motion.div
           initial={{ opacity: 0, height: 0 }}
-          animate={{ 
-            opacity: isMobileMenuOpen ? 1 : 0, 
-            height: isMobileMenuOpen ? 'auto' : 0 
+          animate={{
+            opacity: isMobileMenuOpen ? 1 : 0,
+            height: isMobileMenuOpen ? 'auto' : 0
           }}
           transition={{ duration: 0.3 }}
           className="md:hidden overflow-hidden bg-zinc-950/95 backdrop-blur-md border-b border-zinc-800"
@@ -283,7 +286,7 @@ export default function Home() {
       {/* Hero Section - Fixed to proper viewport height */}
       <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden pt-32 sm:pt-32 md:pt-36 lg:pt-32 xl:pt-20 pb-20 xl:pb-32">
         {/* Animated gradient background */}
-        <motion.div 
+        <motion.div
           className="absolute inset-0 bg-gradient-to-br from-lime-400/10 via-blue-400/5 to-purple-400/10"
           animate={{
             backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
@@ -294,9 +297,9 @@ export default function Home() {
             ease: "linear"
           }}
         />
-        
+
         {/* Floating crypto assets */}
-        <motion.div 
+        <motion.div
           className="absolute top-1/4 right-1/4 w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48"
           animate={{
             y: [-20, 20, -20],
@@ -308,21 +311,21 @@ export default function Home() {
             ease: "easeInOut"
           }}
         >
-          <Image 
+          <Image
             src="/assets/btc.png"
             alt="Bitcoin"
             width={192}
             height={192}
             className="w-full h-full object-contain"
-            style={{ 
+            style={{
               filter: 'drop-shadow(0 0 20px rgba(247, 147, 26, 0.5))',
               opacity: 0.6
             }}
             priority
           />
         </motion.div>
-        
-        <motion.div 
+
+        <motion.div
           className="absolute bottom-1/3 left-1/4 w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40"
           animate={{
             y: [20, -20, 20],
@@ -335,20 +338,20 @@ export default function Home() {
             delay: 2
           }}
         >
-          <Image 
+          <Image
             src="/assets/eth.png"
             alt="Ethereum"
             width={160}
             height={160}
             className="w-full h-full object-contain"
-            style={{ 
+            style={{
               filter: 'drop-shadow(0 0 20px rgba(98, 126, 234, 0.5))',
               opacity: 0.6
             }}
             priority
           />
         </motion.div>
-        
+
         <div className="max-w-7xl mx-auto text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -364,8 +367,8 @@ export default function Home() {
                 Leading Web3 Growth Agency in APAC
               </Badge>
             </motion.div>
-            
-            <motion.h1 
+
+            <motion.h1
               className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 sm:mb-8 xl:mb-10 leading-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -375,7 +378,7 @@ export default function Home() {
                 Accelerate Your
               </span>
               <br />
-              <motion.span 
+              <motion.span
                 className="bg-gradient-to-r from-lime-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
                 animate={{
                   backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
@@ -392,8 +395,8 @@ export default function Home() {
                 Web3 Growth
               </motion.span>
             </motion.h1>
-            
-            <motion.p 
+
+            <motion.p
               className="text-base sm:text-lg md:text-xl lg:text-2xl text-zinc-300 mb-8 sm:mb-10 xl:mb-12 max-w-4xl mx-auto leading-relaxed px-4 sm:px-0"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -402,8 +405,8 @@ export default function Home() {
               {/* We build thriving Web3 communities, manage successful campaigns, and drive sustainable growth across the APAC region with cutting-edge strategies and proven results. */}
               We help Web3 companies grow by bringing in real users and building strong communities across APAC. From dev campaigns to IRL events, we create hype that actually converts.
             </motion.p>
-            
-            <motion.div 
+
+            <motion.div
               className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12 sm:mb-16 xl:mb-20 px-4 sm:px-0"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -424,14 +427,15 @@ export default function Home() {
                 whileTap={{ scale: 0.95 }}
                 className="w-full sm:w-auto"
               >
-                <Button size="lg" variant="outline" className="w-full sm:w-auto border-zinc-700 text-white hover:bg-zinc-800 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg">
+                <Button href='https://www.notion.so/Morphine-Labs-230f9b5ba55880a69b44c68a26dc589e?source=copy_link'
+                  size="lg" external variant="outline" className="w-full sm:w-auto border-zinc-700 text-white hover:bg-zinc-800 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg">
                   View Our Work
                 </Button>
               </motion.div>
             </motion.div>
 
             {/* Enhanced Metrics */}
-            <motion.div 
+            <motion.div
               className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 xl:gap-10 px-4 sm:px-0 mb-16 xl:mb-20"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -450,7 +454,7 @@ export default function Home() {
                   transition={{ type: "spring", stiffness: 300, damping: 10 }}
                 >
                   <div className="relative">
-                    <motion.div 
+                    <motion.div
                       className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-bold text-lime-400 mb-1 sm:mb-2 group-hover:text-blue-400 transition-colors"
                       animate={{ scale: [1, 1.05, 1] }}
                       transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
@@ -473,9 +477,9 @@ export default function Home() {
             </motion.div>
           </motion.div>
         </div>
-        
+
         {/* Enhanced scrolling ticker */}
-        <motion.div 
+        <motion.div
           className="absolute bottom-0 left-0 w-full bg-gradient-to-r from-lime-400 to-blue-400 text-black py-2 sm:py-3 overflow-hidden"
           initial={{ y: 100 }}
           animate={{ y: 0 }}
@@ -483,12 +487,12 @@ export default function Home() {
         >
           <div className="flex overflow-hidden relative">
             {/* First ticker instance */}
-            <motion.div 
+            <motion.div
               className="flex whitespace-nowrap flex-shrink-0"
               animate={{ x: ['0%', '-100%'] }}
-              transition={{ 
-                duration: 25, 
-                repeat: Infinity, 
+              transition={{
+                duration: 25,
+                repeat: Infinity,
                 ease: "linear",
                 repeatType: "loop"
               }}
@@ -499,14 +503,14 @@ export default function Home() {
                 </span>
               ))}
             </motion.div>
-            
+
             {/* Second ticker instance for seamless loop */}
-            <motion.div 
+            <motion.div
               className="flex whitespace-nowrap flex-shrink-0"
               animate={{ x: ['0%', '-100%'] }}
-              transition={{ 
-                duration: 25, 
-                repeat: Infinity, 
+              transition={{
+                duration: 25,
+                repeat: Infinity,
                 ease: "linear",
                 repeatType: "loop"
               }}
@@ -529,99 +533,99 @@ export default function Home() {
           <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6 text-lime-400" />
         </motion.div>
       </section>
-{/* Partner Logos Marquee */}
-          <motion.div 
-            className="mb-12 sm:mb-16 xl:mb-20 overflow-hidden"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="bg-gradient-to-r from-lime-400 to-blue-400 text-black py-2 overflow-hidden">
-              <div className="flex overflow-hidden relative">
-                {/* First ticker instance */}
-                <motion.div 
-                  className="flex whitespace-nowrap flex-shrink-0 items-center"
-                  animate={{ x: ['0%', '-100%'] }}
-                  transition={{ 
-                    duration: 30, 
-                    repeat: Infinity, 
-                    ease: "linear",
-                    repeatType: "loop"
-                  }}
+      {/* Partner Logos Marquee */}
+      <motion.div
+        className="mb-12 sm:mb-16 xl:mb-20 overflow-hidden"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <div className="bg-gradient-to-r from-lime-400 to-blue-400 text-black py-2 overflow-hidden">
+          <div className="flex overflow-hidden relative">
+            {/* First ticker instance */}
+            <motion.div
+              className="flex whitespace-nowrap flex-shrink-0 items-center"
+              animate={{ x: ['0%', '-100%'] }}
+              transition={{
+                duration: 30,
+                repeat: Infinity,
+                ease: "linear",
+                repeatType: "loop"
+              }}
+            >
+              {[
+                'beefy-logo.png', 'bitgo-logo.png', 'core-logo.png', 'japanopenchain-logo.png',
+                'nodeshift-logo.png', 'nomikes-logo.png', 'paysafe-logo.png',
+                'rarible-logo.png', 'tangem-logo.png', 'tinytrader-logo.png',
+                'velia-logo.png', 'wow-logo.png'
+              ].map((logo, index) => (
+                <motion.div
+                  key={index}
+                  className="flex items-center justify-center flex-shrink-0 mx-4 sm:mx-6 lg:mx-8"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  {[
-                    'beefy-logo.png', 'bitgo-logo.png', 'core-logo.png', 'japanopenchain-logo.png', 
-                    'nodeshift-logo.png', 'nomikes-logo.png', 'paysafe-logo.png', 
-                    'rarible-logo.png', 'tangem-logo.png', 'tinytrader-logo.png', 
-                    'velia-logo.png', 'wow-logo.png'
-                  ].map((logo, index) => (
-                    <motion.div 
-                      key={index} 
-                      className="flex items-center justify-center flex-shrink-0 mx-4 sm:mx-6 lg:mx-8"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    >
-                      <Image 
-                        src={`/partners/${logo}`}
-                        alt={`${logo.replace('-logo.png', '').replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Logo`}
-                        width={160}
-                        height={100}
-                        className="w-auto h-12 sm:h-16 lg:h-20 object-contain filter brightness-110 contrast-110"
-                        style={{ 
-                          filter: 'brightness(1.1) contrast(1.1) saturate(1.2)',
-                          imageRendering: 'crisp-edges'
-                        }}
-                      />
-                    </motion.div>
-                  ))}
+                  <Image
+                    src={`/partners/${logo}`}
+                    alt={`${logo.replace('-logo.png', '').replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Logo`}
+                    width={160}
+                    height={100}
+                    className="w-auto h-12 sm:h-16 lg:h-20 object-contain filter brightness-110 contrast-110"
+                    style={{
+                      filter: 'brightness(1.1) contrast(1.1) saturate(1.2)',
+                      imageRendering: 'crisp-edges'
+                    }}
+                  />
                 </motion.div>
-                
-                {/* Second ticker instance for seamless loop */}
-                <motion.div 
-                  className="flex whitespace-nowrap flex-shrink-0 items-center"
-                  animate={{ x: ['0%', '-100%'] }}
-                  transition={{ 
-                    duration: 30, 
-                    repeat: Infinity, 
-                    ease: "linear",
-                    repeatType: "loop"
-                  }}
+              ))}
+            </motion.div>
+
+            {/* Second ticker instance for seamless loop */}
+            <motion.div
+              className="flex whitespace-nowrap flex-shrink-0 items-center"
+              animate={{ x: ['0%', '-100%'] }}
+              transition={{
+                duration: 30,
+                repeat: Infinity,
+                ease: "linear",
+                repeatType: "loop"
+              }}
+            >
+              {[
+                'beefy-logo.png', 'bitgo-logo.png', 'core-logo.png', 'japanopenchain-logo.png',
+                'nodeshift-logo.png', 'nomikes-logo.png', 'paysafe-logo.png',
+                'rarible-logo.png', 'tangem-logo.png', 'tinytrader-logo.png',
+                'velia-logo.png', 'wow-logo.png'
+              ].map((logo, index) => (
+                <motion.div
+                  key={`second-${index}`}
+                  className="flex items-center justify-center flex-shrink-0 mx-4 sm:mx-6 lg:mx-8"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  {[
-                    'beefy-logo.png', 'bitgo-logo.png', 'core-logo.png', 'japanopenchain-logo.png', 
-                    'nodeshift-logo.png', 'nomikes-logo.png', 'paysafe-logo.png', 
-                    'rarible-logo.png', 'tangem-logo.png', 'tinytrader-logo.png', 
-                    'velia-logo.png', 'wow-logo.png'
-                  ].map((logo, index) => (
-                    <motion.div 
-                      key={`second-${index}`} 
-                      className="flex items-center justify-center flex-shrink-0 mx-4 sm:mx-6 lg:mx-8"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    >
-                      <Image 
-                        src={`/partners/${logo}`}
-                        alt={`${logo.replace('-logo.png', '').replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Logo`}
-                        width={160}
-                        height={100}
-                        className="w-auto h-12 sm:h-16 lg:h-20 object-contain filter brightness-110 contrast-110"
-                        style={{ 
-                          filter: 'brightness(1.1) contrast(1.1) saturate(1.2)',
-                          imageRendering: 'crisp-edges'
-                        }}
-                      />
-                    </motion.div>
-                  ))}
+                  <Image
+                    src={`/partners/${logo}`}
+                    alt={`${logo.replace('-logo.png', '').replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Logo`}
+                    width={160}
+                    height={100}
+                    className="w-auto h-12 sm:h-16 lg:h-20 object-contain filter brightness-110 contrast-110"
+                    style={{
+                      filter: 'brightness(1.1) contrast(1.1) saturate(1.2)',
+                      imageRendering: 'crisp-edges'
+                    }}
+                  />
                 </motion.div>
-              </div>
-            </div>
-          </motion.div>
-          
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
+
       {/* Services Section with enhanced animations */}
       <section id="services" className="py-12 sm:py-16 lg:py-20 xl:py-24 px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-7xl mx-auto">
-          <motion.div 
+          <motion.div
             className="text-center mb-12 sm:mb-16 xl:mb-20"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -650,15 +654,14 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ 
+                whileHover={{
                   scale: 1.02,
                   boxShadow: "0 20px 40px rgba(132, 204, 22, 0.1)"
                 }}
               >
-                <Card 
-                  className={`service-card-dark transition-all duration-300 cursor-pointer group relative overflow-hidden h-full ${
-                    activeService === index ? 'ring-2 ring-lime-400/50' : ''
-                  }`}
+                <Card
+                  className={`service-card-dark transition-all duration-300 cursor-pointer group relative overflow-hidden h-full ${activeService === index ? 'ring-2 ring-lime-400/50' : ''
+                    }`}
                   onClick={() => setActiveService(index)}
                 >
                   {/* Animated background gradient */}
@@ -668,10 +671,10 @@ export default function Home() {
                     whileHover={{ scale: 1 }}
                     transition={{ duration: 0.3 }}
                   />
-                  
+
                   <CardHeader className="relative z-10 pb-4">
                     <div className="flex items-center justify-between">
-                      <motion.div 
+                      <motion.div
                         className="text-lime-400"
                         whileHover={{ scale: 1.2, rotate: 360 }}
                         transition={{ duration: 0.5 }}
@@ -692,8 +695,8 @@ export default function Home() {
                   <CardContent className="relative z-10 pt-0">
                     <ul className="space-y-2">
                       {service.features.map((feature, featureIndex) => (
-                        <motion.li 
-                          key={featureIndex} 
+                        <motion.li
+                          key={featureIndex}
                           className="flex items-center text-sm sm:text-base text-zinc-300"
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
@@ -783,7 +786,7 @@ export default function Home() {
       {/* Testimonials */}
       <section className="py-12 sm:py-16 lg:py-20 xl:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <motion.div 
+          <motion.div
             className="text-center mb-12 sm:mb-16 xl:mb-20"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -798,8 +801,8 @@ export default function Home() {
               <span className="block text-lime-400">Say About Us</span>
             </h2>
           </motion.div>
- {/* Partner Logos Marquee */}
-          <motion.div 
+          {/* Partner Logos Marquee */}
+          <motion.div
             className="mb-12 sm:mb-16 xl:mb-20 overflow-hidden"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -809,35 +812,35 @@ export default function Home() {
             <div className="bg-gradient-to-r from-lime-400 to-blue-400 text-black py-2 overflow-hidden">
               <div className="flex overflow-hidden relative">
                 {/* First ticker instance */}
-                <motion.div 
+                <motion.div
                   className="flex whitespace-nowrap flex-shrink-0 items-center"
                   animate={{ x: ['0%', '-100%'] }}
-                  transition={{ 
-                    duration: 30, 
-                    repeat: Infinity, 
+                  transition={{
+                    duration: 30,
+                    repeat: Infinity,
                     ease: "linear",
                     repeatType: "loop"
                   }}
                 >
                   {[
-                    'beefy-logo.png', 'bitgo-logo.png', 'core-logo.png', 'japanopenchain-logo.png', 
-                    'nodeshift-logo.png', 'nomikes-logo.png', 'paysafe-logo.png', 
-                    'rarible-logo.png', 'tangem-logo.png', 'tinytrader-logo.png', 
+                    'beefy-logo.png', 'bitgo-logo.png', 'core-logo.png', 'japanopenchain-logo.png',
+                    'nodeshift-logo.png', 'nomikes-logo.png', 'paysafe-logo.png',
+                    'rarible-logo.png', 'tangem-logo.png', 'tinytrader-logo.png',
                     'velia-logo.png', 'wow-logo.png'
                   ].map((logo, index) => (
-                    <motion.div 
-                      key={index} 
+                    <motion.div
+                      key={index}
                       className="flex items-center justify-center flex-shrink-0 mx-4 sm:mx-6 lg:mx-8"
                       whileHover={{ scale: 1.1 }}
                       transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     >
-                      <Image 
+                      <Image
                         src={`/partners/${logo}`}
                         alt={`${logo.replace('-logo.png', '').replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Logo`}
                         width={160}
                         height={100}
                         className="w-auto h-12 sm:h-16 lg:h-20 object-contain filter brightness-110 contrast-110"
-                        style={{ 
+                        style={{
                           filter: 'brightness(1.1) contrast(1.1) saturate(1.2)',
                           imageRendering: 'crisp-edges'
                         }}
@@ -845,37 +848,37 @@ export default function Home() {
                     </motion.div>
                   ))}
                 </motion.div>
-                
+
                 {/* Second ticker instance for seamless loop */}
-                <motion.div 
+                <motion.div
                   className="flex whitespace-nowrap flex-shrink-0 items-center"
                   animate={{ x: ['0%', '-100%'] }}
-                  transition={{ 
-                    duration: 30, 
-                    repeat: Infinity, 
+                  transition={{
+                    duration: 30,
+                    repeat: Infinity,
                     ease: "linear",
                     repeatType: "loop"
                   }}
                 >
                   {[
-                    'beefy-logo.png', 'bitgo-logo.png', 'core-logo.png', 'japanopenchain-logo.png', 
-                    'nodeshift-logo.png', 'nomikes-logo.png', 'paysafe-logo.png', 
-                    'rarible-logo.png', 'tangem-logo.png', 'tinytrader-logo.png', 
+                    'beefy-logo.png', 'bitgo-logo.png', 'core-logo.png', 'japanopenchain-logo.png',
+                    'nodeshift-logo.png', 'nomikes-logo.png', 'paysafe-logo.png',
+                    'rarible-logo.png', 'tangem-logo.png', 'tinytrader-logo.png',
                     'velia-logo.png', 'wow-logo.png'
                   ].map((logo, index) => (
-                    <motion.div 
-                      key={`second-${index}`} 
+                    <motion.div
+                      key={`second-${index}`}
                       className="flex items-center justify-center flex-shrink-0 mx-4 sm:mx-6 lg:mx-8"
                       whileHover={{ scale: 1.1 }}
                       transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     >
-                      <Image 
+                      <Image
                         src={`/partners/${logo}`}
                         alt={`${logo.replace('-logo.png', '').replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Logo`}
                         width={160}
                         height={100}
                         className="w-auto h-12 sm:h-16 lg:h-20 object-contain filter brightness-110 contrast-110"
-                        style={{ 
+                        style={{
                           filter: 'brightness(1.1) contrast(1.1) saturate(1.2)',
                           imageRendering: 'crisp-edges'
                         }}
@@ -941,8 +944,8 @@ export default function Home() {
                 <span className="block text-lime-400">for APAC Markets</span>
               </h2>
               <p className="text-base sm:text-lg lg:text-xl text-zinc-300 mb-6 sm:mb-8">
-                We&apos;re a specialized growth agency focused exclusively on Web3 projects in the Asia-Pacific region. 
-                Our deep understanding of local markets, combined with cutting-edge Web3 expertise, makes us the 
+                We&apos;re a specialized growth agency focused exclusively on Web3 projects in the Asia-Pacific region.
+                Our deep understanding of local markets, combined with cutting-edge Web3 expertise, makes us the
                 go-to partner for blockchain projects looking to scale.
               </p>
               <div className="grid grid-cols-2 gap-6 sm:gap-8">
@@ -965,7 +968,7 @@ export default function Home() {
                 ))}
               </div>
             </motion.div>
-            <motion.div 
+            <motion.div
               className="relative"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -976,7 +979,7 @@ export default function Home() {
               <div className="relative bg-zinc-900 rounded-2xl p-6 sm:p-8 border border-zinc-800">
                 <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-lime-400">Our Mission</h3>
                 <p className="text-sm sm:text-base text-zinc-300 mb-4 sm:mb-6">
-                  To accelerate the adoption of Web3 across APAC by building sustainable, 
+                  To accelerate the adoption of Web3 across APAC by building sustainable,
                   engaged communities that drive real value for projects and users alike.
                 </p>
                 <div className="space-y-3 sm:space-y-4">
@@ -985,7 +988,7 @@ export default function Home() {
                     'Data-driven strategies',
                     'Long-term partnerships'
                   ].map((item, index) => (
-                    <motion.div 
+                    <motion.div
                       key={index}
                       className="flex items-center"
                       initial={{ opacity: 0, x: -20 }}
@@ -1007,7 +1010,7 @@ export default function Home() {
       {/* Contact Section */}
       <section id="contact" className="py-12 sm:py-16 lg:py-20 xl:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <motion.div 
+          <motion.div
             className="text-center mb-12 sm:mb-16 xl:mb-20"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1039,9 +1042,9 @@ export default function Home() {
                   { icon: Mail, title: 'Email', value: 'partner@morphinelabs.com' },
                   { icon: Send, title: 'Telegram', value: '@MorphineLabs' },
                   { icon: MapPin, title: 'Headquarters', value: 'JustCo, 10 Anson Rd, Singapore 79903' },
-                  
+
                 ].map((contact, index) => (
-                  <motion.div 
+                  <motion.div
                     key={index}
                     className="flex items-center group"
                     initial={{ opacity: 0, y: 20 }}
@@ -1092,9 +1095,9 @@ export default function Home() {
             >
               <div className="flex items-center space-x-2 mb-4">
                 <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center overflow-hidden">
-                  <Image 
-                    src="/logo.png" 
-                    alt="Morphine Labs Logo" 
+                  <Image
+                    src="/logo.png"
+                    alt="Morphine Labs Logo"
                     width={32}
                     height={32}
                     className="w-full h-full object-contain"
@@ -1107,19 +1110,33 @@ export default function Home() {
                 Leading Web3 growth agency helping projects scale across APAC through community-driven strategies.
               </p>
             </motion.div>
-            
+
             {[
               {
                 title: 'Services',
-                links: ['Dev Campaign Management', 'IRL Events', 'Community Building', 'User Acquisition']
+                links: [
+                  { name: 'Dev Campaign Management', url: '' },
+                  { name: 'IRL Events', url: '' },
+                  { name: 'Community Building', url: '' },
+                  { name: 'User Acquisition', url: '' },
+                ]
               },
-              // {
-              //   title: 'Company', 
-              //   links: ['About', 'Portfolio', 'Contact', 'Careers']
-              // },
               {
                 title: 'Connect with us',
-                links: ['Twitter', 'LinkedIn', 'Telegram']
+                links: [
+                  {
+                    name: 'Twitter',
+                    url: 'https://x.com/morphinelabs'
+                  },
+                  {
+                    name: 'LinkedIn',
+                    url: 'https://www.linkedin.com/company/morphine-labs/'
+                  },
+                  {
+                    name: 'Telegram',
+                    url: 'https://t.me/morphinelabs'
+                  }
+                ]
               }
             ].map((section, index) => (
               <motion.div
@@ -1130,15 +1147,18 @@ export default function Home() {
                 viewport={{ once: true }}
               >
                 <h4 className="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">{section.title}</h4>
+
                 <ul className="space-y-1 sm:space-y-2 text-zinc-400">
                   {section.links.map((link) => (
-                    <li key={link}>
-                      <motion.a 
-                        href="#" 
+                    <li key={link.name}>
+                      <motion.a
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="hover:text-lime-400 transition-colors text-xs sm:text-sm"
                         whileHover={{ x: 5 }}
                       >
-                        {link}
+                        {link.name}
                       </motion.a>
                     </li>
                   ))}
@@ -1146,7 +1166,7 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
-          <motion.div 
+          <motion.div
             className="border-t border-zinc-800 mt-6 sm:mt-8 pt-6 sm:pt-8"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
