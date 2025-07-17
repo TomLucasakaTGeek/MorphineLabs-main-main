@@ -417,7 +417,8 @@ export default function Home() {
                 whileTap={{ scale: 0.95 }}
                 className="w-full sm:w-auto"
               >
-                <Button size="lg" className="w-full sm:w-auto bg-lime-400 hover:bg-lime-500 text-black font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg">
+                <Button href='#contact'
+                variant='default' size="lg" className="w-full sm:w-auto bg-lime-400 hover:bg-lime-500 text-black font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg">
                   Start Your Growth Journey
                   <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
                 </Button>
@@ -1115,10 +1116,10 @@ export default function Home() {
               {
                 title: 'Services',
                 links: [
-                  { name: 'Dev Campaign Management', url: '' },
-                  { name: 'IRL Events', url: '' },
-                  { name: 'Community Building', url: '' },
-                  { name: 'User Acquisition', url: '' },
+                  { name: 'Dev Campaign Management', url: '#' },
+                  { name: 'IRL Events', url: '#' },
+                  { name: 'Community Building', url: '#' },
+                  { name: 'User Acquisition', url: '#' },
                 ]
               },
               {
